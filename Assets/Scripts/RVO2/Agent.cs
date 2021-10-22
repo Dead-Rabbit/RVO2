@@ -36,7 +36,10 @@ using System.Collections.Generic;
 namespace RVO
 {
     /**
-     * <summary>Defines an agent in the simulation.</summary>
+     * <summary>
+     * Defines an agent in the simulation.
+     * 详情可以看 https://blog.csdn.net/lsccsl/article/details/119732620
+     * </summary>
      */
     internal class Agent
     {
@@ -412,7 +415,7 @@ namespace RVO
                 {
                     /* Collision. Project on cut-off circle of time timeStep. */
                     float invTimeStep = 1.0f / Simulator.Instance.timeStep_;
-
+ 
                     /* Vector from cutoff center to relative velocity. */
                     Vector2 w = relativeVelocity - invTimeStep * relativePosition;
 
@@ -462,7 +465,7 @@ namespace RVO
                         agentNeighbors_[i] = agentNeighbors_[i - 1];
                         --i;
                     }
-
+ 
                     agentNeighbors_[i] = new KeyValuePair<float, Agent>(distSq, agent);
 
                     if (agentNeighbors_.Count == maxNeighbors_)
