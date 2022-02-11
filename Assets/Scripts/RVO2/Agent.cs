@@ -380,6 +380,7 @@ namespace RVO
                     float wLengthSq = RVOMath.absSq(w);
                     float dotProduct1 = w * relativePosition;
 
+                    // 往 cutoff-circle 方向调整速度
                     if (dotProduct1 < 0.0f && RVOMath.sqr(dotProduct1) > combinedRadiusSq * wLengthSq)
                     {
                         /* Project on cut-off circle. */
