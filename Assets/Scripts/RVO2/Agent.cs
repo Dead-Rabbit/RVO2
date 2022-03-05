@@ -535,7 +535,8 @@ namespace RVO
          * <param name="result">A reference to the result of the linear program.
          * </param>
          */
-        private bool linearProgram1(IList<Line> lines, int lineNo, float radius, Vector2 optVelocity, bool directionOpt, ref Vector2 result)
+        private bool linearProgram1(IList<Line> lines, int lineNo, float radius, Vector2 optVelocity, 
+            bool directionOpt, ref Vector2 result)
         {
             float dotProduct = lines[lineNo].point * lines[lineNo].direction;
             float discriminant = RVOMath.sqr(dotProduct) + RVOMath.sqr(radius) - RVOMath.absSq(lines[lineNo].point);
@@ -636,13 +637,16 @@ namespace RVO
          * <param name="result">A reference to the result of the linear program.
          * </param>
          */
-        private int linearProgram2(IList<Line> lines, float radius, Vector2 optVelocity, bool directionOpt, ref Vector2 result)
+        private int linearProgram2(IList<Line> lines, float radius, Vector2 optVelocity, 
+            bool directionOpt, ref Vector2 result)
         {
             if (directionOpt)
             {
                 /*
                  * Optimize direction. Note that the optimization velocity is of
                  * unit length in this case.
+                 * 
+                 * 优化方向。注意，在这种情况下，优化速度是单位长度的。
                  */
                 result = optVelocity * radius;
             }

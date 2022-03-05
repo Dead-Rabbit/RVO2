@@ -78,7 +78,7 @@ namespace RVO
             }
 
             /**
-             * <summary>Returns true if the first pair of scalar values is less
+             * <summary>Returns true if the first pair of scalar(标量) values is less
              * than the second pair of scalar values.</summary>
              *
              * <returns>True if the first pair of scalar values is less than the
@@ -93,7 +93,7 @@ namespace RVO
             }
 
             /**
-             * <summary>Returns true if the first pair of scalar values is less
+             * <summary>Returns true if the first pair of scalar(标量) values is less
              * than or equal to the second pair of scalar values.</summary>
              *
              * <returns>True if the first pair of scalar values is less than or
