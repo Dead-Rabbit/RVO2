@@ -430,7 +430,8 @@ namespace RVO
                 line.point = velocity_ + 0.5f * u;
                 orcaLines_.Add(line);
             }
-
+            
+            // prefVelocity_ 由外部输入，指当前单元被期望的速度，由寻路系统决定
             int lineFail = linearProgram2(orcaLines_, maxSpeed_, prefVelocity_, false, ref newVelocity_);
 
             if (lineFail < orcaLines_.Count)
@@ -538,7 +539,10 @@ namespace RVO
         private bool linearProgram1(IList<Line> lines, int lineNo, float radius, Vector2 optVelocity, 
             bool directionOpt, ref Vector2 result)
         {
+            // 根据勾股定理判断,dotProduct是一条直角边的长
             float dotProduct = lines[lineNo].point * lines[lineNo].direction;
+            // RVOMash.absSq(lines[lineNo].port) 是斜边，将它们与速度的长radius比较
+            // 个人当前理解 discriminant 为，当前点到目标line的距离与radius进行比较长度，比较为： radius - 当前点到line的垂线
             float discriminant = RVOMath.sqr(dotProduct) + RVOMath.sqr(radius) - RVOMath.absSq(lines[lineNo].point);
 
             if (discriminant < 0.0f)
@@ -624,7 +628,8 @@ namespace RVO
 
         /**
          * <summary>Solves a two-dimensional linear program subject to linear
-         * constraints defined by lines and a circular constraint.</summary>
+         * constraints defined by lines and a circular constraint.
+         * </summary>
          *
          * <returns>The number of the line it fails on, and the number of lines
          * if successful.</returns>
@@ -645,8 +650,8 @@ namespace RVO
                 /*
                  * Optimize direction. Note that the optimization velocity is of
                  * unit length in this case.
-                 * 
-                 * 优化方向。注意，在这种情况下，优化速度是单位长度的。
+                 * 优化方向
+                 * 注意：在这种情况下，优化速度是单位长度的。
                  */
                 result = optVelocity * radius;
             }
@@ -663,6 +668,7 @@ namespace RVO
 
             for (int i = 0; i < lines.Count; ++i)
             {
+                // 如果距离为正,说明在半平面外,调用linearProgram1算出来的最接近的速度
                 if (RVOMath.det(lines[i].direction, lines[i].point - result) > 0.0f)
                 {
                     /* Result does not satisfy constraint i. Compute new optimal result. */
