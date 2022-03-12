@@ -177,12 +177,14 @@ namespace RVO
             obstacle4.Add(new Vector2(-40.0f, -40.0f));
             createObstacle(obstacle4);
             
+            /*
             IList<Vector2> lineObstacle = new List<Vector2>();
             lineObstacle.Add(new Vector2(0.0f, 40.0f));
             lineObstacle.Add(new Vector2(0.0f, 20.0f));
             lineObstacle.Add(new Vector2(20.0f, 0.0f));
             lineObstacle.Add(new Vector2(40.0f, 0.0f));
             createObstacle(lineObstacle);
+            */
             
             /*
              * Process the obstacles so that they are accounted for in the
