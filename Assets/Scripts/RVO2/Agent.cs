@@ -544,10 +544,11 @@ namespace RVO
             // RVOMash.absSq(lines[lineNo].port) 是斜边，将它们与速度的长radius比较
             // 个人当前理解 discriminant 为，当前点到目标line的距离与radius进行比较长度，比较为： radius - 当前点到line的垂线
             float discriminant = RVOMath.sqr(dotProduct) + RVOMath.sqr(radius) - RVOMath.absSq(lines[lineNo].point);
-
             if (discriminant < 0.0f)
             {
-                /* Max speed circle fully invalidates line lineNo. */
+                /* Max speed circle fully invalidates (证明...错误，使站不住脚，使无效，使作废)
+                 line lineNo.
+                */
                 return false;
             }
 
@@ -562,7 +563,10 @@ namespace RVO
 
                 if (RVOMath.fabs(denominator) <= RVOMath.RVO_EPSILON)
                 {
-                    /* Lines lineNo and i are (almost) parallel. */
+                    /*
+                     Lines lineNo and i are (almost) parallel.
+                     当前两个线几乎是平行的
+                     */
                     if (numerator < 0.0f)
                     {
                         return false;
