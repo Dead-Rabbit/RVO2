@@ -546,7 +546,7 @@ namespace RVO
                 /* Max speed circle fully invalidates line lineNo. */
                 return false;
             }
-
+ 
             float sqrtDiscriminant = RVOMath.sqrt(discriminant);
             float tLeft = -dotProduct - sqrtDiscriminant;
             float tRight = -dotProduct + sqrtDiscriminant;
@@ -663,9 +663,13 @@ namespace RVO
 
             for (int i = 0; i < lines.Count; ++i)
             {
+                // 此处为什么使用 det 判断，且这是要做什么。。
                 if (RVOMath.det(lines[i].direction, lines[i].point - result) > 0.0f)
                 {
-                    /* Result does not satisfy constraint i. Compute new optimal result. */
+                    /*
+                     * Result does not satisfy constraint i. Compute new optimal result.
+                     * 结果不满足约束条件i，计算新的最优结果。
+                     */
                     Vector2 tempResult = result;
                     if (!linearProgram1(lines, i, radius, optVelocity, directionOpt, ref result))
                     {
