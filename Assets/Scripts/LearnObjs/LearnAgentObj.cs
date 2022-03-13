@@ -1,6 +1,8 @@
-﻿namespace RVO
+﻿using UnityEngine;
+
+namespace RVO
 {
-    public class LearnAgentObj
+    public class LearnAgentObj : MonoBehaviour
     {
         
     }

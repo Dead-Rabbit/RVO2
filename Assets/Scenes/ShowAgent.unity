@@ -636,8 +636,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentNode: {fileID: 1073547660}
   obstacleNode: {fileID: 1625484055}
-  agentPrefab: {fileID: 929805833560534396, guid: 78911d3eaf172c6438a7836e66149094, type: 3}
+  agentPrefab: {fileID: 929805833560534396, guid: 64bbab9a2f85a420297669787b974be3, type: 3}
   moveSpeed: 0.4
+  genAgentInfos:
+  - genPos: {x: 0, y: 0, z: 0}
+    dir: {x: 0, y: 0, z: 0}
+  - genPos: {x: 0, y: 0, z: 0}
+    dir: {x: 0, y: 0, z: 0}
 --- !u!4 &1416881647
 Transform:
   m_ObjectHideFlags: 0

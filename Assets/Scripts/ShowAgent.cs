@@ -46,6 +46,13 @@ using Random = System.Random;
 
 namespace RVO
 {
+    [Serializable]
+    public class GenAgentInfo
+    {
+        public Vector2 genPos;
+        public Vector2 dir;
+    }
+    
     class ShowAgent : MonoBehaviour
     {
         /* Store the gameObjects of the agents */
@@ -59,35 +66,8 @@ namespace RVO
 
         public float moveSpeed = 2.0f;
 
-        /* Store the goals of the agents. */
-        IList<Vector2> goals;
-
-        private IList<bool> arrived;
-        
         public List<GenAgentInfo> genAgentInfos;
 
-        [Serializable]
-        public class GenAgentInfo
-        {
-            public Vector3 genPos;
-            public Vector3 dir;
-        }
-
-        /** Random number generator. */
-        Random random;
-
-        ShowAgent()
-        {
-            goals = new List<Vector2>();
-            arrived = new List<bool>();
-
-            #if RVO_SEED_RANDOM_NUMBER_GENERATOR
-            random = new Random();
-            #else
-            random = new Random(0);
-            #endif
-        }
-        
         // Start is called before the first frame update
         void Start()
         {
@@ -109,22 +89,19 @@ namespace RVO
              */
             foreach (GenAgentInfo genAgentInfo in genAgentInfos)
             {
-                // addAgent(new Vector2(55.0f + i * 10.0f, 55.0f + j * 10.0f));
-                // goals.Add(new Vector2(-55.0f - j * 10.0f, -55.0f - i * 10.0f));
+                addAgent(genAgentInfo.genPos, genAgentInfo.dir);
             }
         }
 
-        private void addAgent(Vector2 agentPos)
+        private void addAgent(Vector2 agentPos, Vector2 moveDir)
         {
             // 下面为创建 Agent GameObjects
             if (agentPrefab == null)
                 return;
 
-            GameObject newAgentObj = GameObject.Instantiate(agentPrefab, agentNode.transform, true);
+            GameObject newAgentObj = Instantiate(agentPrefab, agentNode.transform, true);
             newAgentObj.transform.position = new Vector3(agentPos.x(), 0, agentPos.y());
             agentObjs.Add(newAgentObj);
-            
-            arrived.Add(false);
         }
         
     }
